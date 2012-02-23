@@ -1,27 +1,13 @@
 #!/usr/bin/env ruby
 # -*- mode: ruby -*-
 
+
+filename = ARGV[0]
+raise ArgumentError unless File.exists?(filename)
+
 require 'coffee-script'
 require 'nokogiri'
+require "cucumber-html-relizy/cli"
 
-file = ARGV[0]
-raise ArgumentError unless File.exists?(file)
-
-doc = Nokogiri::HTML(file)
-
-a = doc.css("#cucumber-relizy")
-if a && a.size>0
-  a.remove
-end
-
-script = CoffeeScript.compile File.read("cucumber-html-relizy/js/cucumber-html-relizy.js.coffee")
-a = doc.css("body").first
-a.add_child("<script type='text/javascript' id='cucumber-relizy'>#{ script }</script>")
-
-output = file.gsub(/html$/, 'relizy.html')
-File.open(output,"w+") do |f|
-  doc.write_to f
-end
-
-
+Cucumber::Html::Relizy::CLI.execute(filename)
 

@@ -17,4 +17,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'coffee-script'
   gem.add_dependency 'nokogiri'
+
+  gem.add_development_dependency 'rake'
 end
