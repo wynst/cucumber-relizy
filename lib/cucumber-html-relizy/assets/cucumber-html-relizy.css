@@ -11,3 +11,10 @@
   width: 70%;
 }
 
+#relizy-sidebar ul#root > li {
+  margin-bottom: 10px;
+}
+
+#relizy-sidebar ul#root ul {
+  padding-left: 15px;
+}

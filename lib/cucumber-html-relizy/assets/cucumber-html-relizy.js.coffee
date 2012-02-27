@@ -3,7 +3,15 @@ class Feature
     @name = $(el).children('h2').text().replace "Feature: ", ""
     @tags = []
     @tags.push($(node).text()) for node in $('.tag', el)
-    #@file =
+    # get filename
+    @file = $('span.scenario_file:first', el).text()
+    # remove line numbers
+    @path = @file.replace(/\.feature:\d+?$/,'')
+    # remove features/ path
+    @path = @path.split('/')
+    @path.shift()
+    # remove feature name
+    @path.pop()
 
 jQuery ($) ->
   @active = null
@@ -18,12 +26,22 @@ jQuery ($) ->
   # hide all features
   $(a).trigger('click')
 
-  $('<ul />').appendTo("#relizy-sidebar")
+  $('<ul id="root" />').appendTo("#relizy-sidebar")
 
   $.each $('.feature'), (index, item) ->
     feature = new Feature(index, item)
     # console.log feature
-    li = $('<li><a href="#">'+ feature.name + '</a></li>').appendTo '#relizy-sidebar ul'
+    parent = $('#relizy-sidebar ul#root')
+    if feature.path && feature.path.length > 0
+      for folder in feature.path
+        el = $('ul[rel="'+folder+'"]', parent)
+        if el.length > 0
+          parent = el
+        else
+          $('<li>' + folder + '<ul rel="' + folder + '"></ul></li>').appendTo($(parent))
+          parent = $('ul[rel="'+folder+'"]', parent)
+
+    li = $('<li><a href="#">'+ feature.name + '</a></li>').appendTo $(parent)
     # console.log li
     $(li).children('a:first').data('feature', feature)
 
