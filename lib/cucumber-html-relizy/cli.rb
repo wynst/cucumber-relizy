@@ -11,10 +11,15 @@ module Cucumber
             a.remove
           end
 
-          script = File.expand_path('../js/cucumber-html-relizy.js.coffee', __FILE__)
+          script = File.expand_path('../assets/cucumber-html-relizy.css', __FILE__)
+          script = File.read(script)
+          a = doc.css("head").first
+          a.add_child("<style type='text/css'>\n#{ script }\n</style>")
+
+          script = File.expand_path('../assets/cucumber-html-relizy.js.coffee', __FILE__)
           script = CoffeeScript.compile File.read(script)
           a = doc.css("body").first
-          a.add_child("<script type='text/javascript' id='cucumber-relizy'>#{ script }</script>")
+          a.add_child("<script type='text/javascript' id='cucumber-relizy'>\n#{ script }\n</script>")
 
           output = filename.gsub(/html$/, 'relizy.html')
           File.open(output,"w+") do |f|

@@ -1,0 +1,13 @@
+#relizy-sidebar {
+  clear: none;
+  float: left;
+  width: 25%;
+  padding: 2px;
+  margin: 0px 10px 5px 10px;
+}
+
+.cucumber div.feature {
+  float: left;
+  width: 70%;
+}
+
