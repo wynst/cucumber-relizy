@@ -7,7 +7,7 @@ raise ArgumentError unless File.exists?(filename)
 
 require 'coffee-script'
 require 'nokogiri'
-require "cucumber-html-relizy/cli"
+require "cucumber/relizy/cli"
 
-Cucumber::Html::Relizy::CLI.execute(filename)
+Cucumber::Relizy::CLI.execute(filename)
 

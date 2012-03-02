@@ -1,24 +1,36 @@
-# Cucumber::Html::Relizy
+# Cucumber::Relizy
 
-Patch your cucumber html output with features navigation
+Patch existing cucumber html output with navigation for features
 
 ## Installation
 
-    $ gem install cucumber-html-relizy
+    $ gem install cucumber-relizy
 
 ## Usage
 
-1. command-line
-  `cucumber-html-relizy FILENAME`
-2. thor task (add this to your Thorfile)
+1. command-line  
+  `cucumber-relizy FILENAME`  
+   will create `FILENAME.relizy.html`
+
+2. thor task  
+   * add this to your Thorfile in a Rails app
 
 ```ruby
-
-desc "run cucumber and browse features"
-def features
-  `cucumber features/ --format=html --output=tmp/features.html`
-  `cucumber-html-relizy tmp/features.html`
-  `open tmp/features.relizy.html`
+class App < Thor
+  desc "features", "run cucumber and browse features"
+  def features
+    system "rm tmp/features.html"
+    system "rm tmp/features.relizy.html"
+    system "bundle exec cucumber --drb features/ --format=html -o tmp/features.html"
+    system "cucumber-relizy tmp/features.html"
+    system "open tmp/features.relizy.html"
+  end
 end
 ```
+
+   * run `thor app:features` to run cucumber, and browse the features.
+
+## Similar library
+   * [http://relishapp.com](Relish) : this library is inspired by Relish
+     feature navigation.
 

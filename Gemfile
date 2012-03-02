@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in cucumber-html-relizy.gemspec
+# Specify your gem's dependencies in cucumber-relizy.gemspec
 gemspec
