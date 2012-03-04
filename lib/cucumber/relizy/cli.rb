@@ -12,7 +12,7 @@ module Cucumber
 
         script = File.expand_path('../assets/cucumber-relizy.css', __FILE__)
         script = File.read(script)
-        a = doc.css("head").first
+        a = doc.css("body").first
         a.add_child("<style type='text/css'>\n#{ script }\n</style>")
 
         script = File.expand_path('../assets/cucumber-relizy.js.coffee', __FILE__)
