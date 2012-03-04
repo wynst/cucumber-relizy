@@ -2,6 +2,14 @@
 
 Patch existing cucumber html output with navigation for features
 
+Before:
+
+![cucumber](https://github.com/wynst/cucumber-relizy/raw/master/doc/cucumber.jpg)
+
+After:
+![cucumber-html](https://github.com/wynst/cucumber-relizy/raw/master/doc/cucumber-relizy.jpg)
+
+
 ## Installation
 
     $ gem install cucumber-relizy
