@@ -13,6 +13,17 @@ class Feature
     # remove feature name
     @path.pop()
 
+    # steps status
+    @status = if $('li.step.failed', el).length > 0
+      'failed'
+    else if $('li.step.undefined', el).length > 0
+      'failed'
+    else if $('li.step.pending', el).length > 0
+      'pending'
+    else
+      'pass'
+
+
 jQuery ($) ->
   @active = null
 
@@ -41,7 +52,8 @@ jQuery ($) ->
           $('<li>' + folder + '<ul rel="' + folder + '"></ul></li>').appendTo($(parent))
           parent = $('ul[rel="'+folder+'"]', parent)
 
-    li = $('<li><a href="#">'+ feature.name + '</a></li>').appendTo $(parent)
+    li = $("<li class='#{ feature.status }'><a href='#'>#{ feature.name }</a></li>").
+      appendTo $(parent)
     # console.log li
     $(li).children('a:first').data('feature', feature)
 

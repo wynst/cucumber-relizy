@@ -18,3 +18,21 @@
 #relizy-sidebar ul#root ul {
   padding-left: 15px;
 }
+
+#relizy-sidebar ul#root li {
+  list-style: none;
+}
+
+#relizy-sidebar ul#root li.pass {
+}
+
+#relizy-sidebar ul#root li.failed {
+  list-style: disc;
+  color: rgb(196, 13, 13);
+}
+
+#relizy-sidebar ul#root li.pending {
+  list-style: disc;
+  color: #FAA732;
+}
+
