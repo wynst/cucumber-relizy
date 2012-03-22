@@ -1,6 +1,7 @@
 # Cucumber::Relizy
 
-Patch existing cucumber html output with navigation for features
+This app will enhance your Cucumber html output with features navigation.
+Improve usability on browsing features for any stakeholders.
 
 Before:
 
